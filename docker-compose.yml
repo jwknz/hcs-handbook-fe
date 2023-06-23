@@ -1,0 +1,17 @@
+services:
+    wp:
+        image: jwknz/wordpress-sqlite
+        profiles: ["wordpress"]
+        environment:
+            - WP_HOME=http://localhost
+            - WP_SITEURL=http://localhost
+        volumes:
+            - ./db:/var/www/db
+            - ./uploads:/var/www/html/wp-content/uploads
+        restart: always
+    http:
+        image: milanb/wordpress-nginx
+        links:
+            - wp:wordpress
+        ports:
+            - "80:80"
