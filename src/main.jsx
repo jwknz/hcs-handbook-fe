@@ -8,17 +8,26 @@ import './main.css'
 
 //Pages
 import Home from './pages/Home';
-import Whanau from './pages/Whanau';
+import Search from './pages/Search';
 import Staff from './pages/Staff';
 import HomeLayout from './layouts/HomeLayout';
+import Error from './pages/Error';
+import Content from './pages/ContentPage'
+import Results from './components/Results';
+
 
 //Router
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/"element={<HomeLayout />}>
+      
       <Route index element={<Home />} />
-      <Route path="/whanau" element={<Whanau />} />
-      <Route path="/staff" element={<Staff />} />
+      <Route path="/search/*" element={<Search />} />
+      <Route path="/staff/*" element={<Staff />} />
+      <Route path="/content" element={<Content />} />
+      <Route path="/results" element={<Results />} />
+
+      <Route path="*" element={<Error />} />
     </Route>
   )
 )
