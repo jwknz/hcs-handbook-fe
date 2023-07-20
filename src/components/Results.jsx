@@ -77,13 +77,13 @@ export default function Results() {
 
             return (
                 description !== undefined ? (
-                    <li key={item.id} className="border-2 border-sky-900 rounded-lg p-2 my-2 hover:bg-sky-100 hover:cursor-pointer w-full" >
-                        <a href={`/content?id=${item.id}`} style={{fontSize: "1rem", fontWeight: "bold", color: "#60a5fa"}}>
+                    <li key={item.id} className="border-2 border-sky-900 dark:border-rose-500  rounded-lg p-2 my-2 hover:bg-sky-100 hover:cursor-pointer w-full" >
+                        <a href={`/content?id=${item.id}`} className="text-blue-400 text-lg font-bold">
                         <h2 style={{paddingBottom: "10px"}}>{item.title}</h2>
                         </a>
-                        <span style={{color: "black"}}>{description[0]}</span>
-                        <span style={{color: "black", backgroundColor: "yellow", paddingTop: "5px", paddingBottom: "5px", paddingRight: "5px", paddingLeft: "5px"}}>{description[1]}</span>
-                        <span style={{color: "black"}}>{description[2]}</span>
+                        <span className="text-black dark:text-white">{description[0]}</span>
+                        <span className="text-black dark:text-white bg-yellow-400 dark:bg-orange-500 p-0.5">{description[1]}</span>
+                        <span className="text-black dark:text-white">{description[2]}</span>
                     </li>
                 ) : ( 
                     <div key={item.id}></div>
