@@ -5,7 +5,7 @@ import { useSearchQuery } from "../states/useSearchQuery"
 
 const Query = gql`
   query($term: String) {
-  	pages(where: {search: $term, tag: "public"}) {
+  	pages(where: {search: $term}) {
       edges {
         node {
           id
@@ -18,7 +18,7 @@ const Query = gql`
   }
 `
 
-export default function Results() {
+export default function StaffResults() {
 
     const [results, setResults] = useState([])
 
@@ -76,8 +76,8 @@ export default function Results() {
 
             return (
                 description !== undefined ? (
-                    <li key={item.id} className="border-2 border-sky-900 dark:border-rose-500  rounded-lg p-2 my-2 hover:bg-sky-700 hover:cursor-pointer w-full" >
-                        <a href={`/content?id=${item.id}`} className="text-blue-400 dark:text-white hover:text-yellow-500 text-lg font-bold">
+                    <li key={item.id} className="border-2 border-sky-900 dark:border-rose-500  rounded-lg p-2 my-2 hover:bg-sky-100 hover:cursor-pointer w-full" >
+                        <a href={`/content?id=${item.id}`} className="text-blue-400 text-lg font-bold">
                         <h2 style={{paddingBottom: "10px"}}>{item.title}</h2>
                         </a>
                         <span className="text-black dark:text-white">{description[0]}</span>

@@ -14,21 +14,29 @@ import HomeLayout from './layouts/HomeLayout';
 import Error from './pages/Error';
 import Content from './pages/ContentPage'
 import Results from './components/Results';
+import ResultsLayout from './layouts/ResultsLayout'
 
 
 //Router
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/"element={<HomeLayout />}>
-      
-      <Route index element={<Home />} />
-      <Route path="/search/*" element={<Search />} />
-      <Route path="/staff/*" element={<Staff />} />
-      <Route path="/content" element={<Content />} />
-      <Route path="/results" element={<Results />} />
+      <>
+      <Route element={<HomeLayout />} >
 
-      <Route path="*" element={<Error />} />
-    </Route>
+        <Route index element={<Home />} />
+        <Route path="/search/" element={<Search />} />
+        <Route path="/search/*" element={<Search />} />
+        <Route path="/staff/" element={<Staff />} />
+        <Route path="/staff/*" element={<Staff />} />
+        <Route path="*" element={<Error />} />
+
+      </Route>
+      <Route element={<ResultsLayout />}>
+
+            <Route path="/content" element={<Content />} />
+
+      </Route>
+      </>
   )
 )
 
