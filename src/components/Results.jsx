@@ -78,7 +78,7 @@ export default function Results() {
             return (
                 description !== undefined ? (
                     <li key={item.id} className="border-2 border-sky-900 rounded-lg p-2 my-2 hover:bg-sky-100 hover:cursor-pointer w-full" >
-                        <a href={`${import.meta.env.VITE_FE_URL}/content?id=${item.id}`} style={{fontSize: "1rem", fontWeight: "bold", color: "#60a5fa"}}>
+                        <a href={`/content?id=${item.id}`} style={{fontSize: "1rem", fontWeight: "bold", color: "#60a5fa"}}>
                         <h2 style={{paddingBottom: "10px"}}>{item.title}</h2>
                         </a>
                         <span style={{color: "black"}}>{description[0]}</span>

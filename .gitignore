@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 tmp
+docker-compose.yml
+db
+.env

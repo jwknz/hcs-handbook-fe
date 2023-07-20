@@ -53,7 +53,7 @@ export default function TopNavBar() {
     <>
         <div className="w-full h-20 px-2 py-6 bg-blue-900 dark:bg-slate-500 absolute top-0 flex flex-row items-center justify-between" >
             <div className="space-x-4 flex flex-row items-center -mt-4">
-                <img src="./hcs-logo.png" className="w-12 mb-4" />
+                <img src="/hcs-logo.png" className="w-12 mb-4" />
                 <NavLink to="/"><h1 className="h-12 text-white dark:text-white text-lg font-light">Hoogle</h1></NavLink>
                 {/* <a href="#" className="rounded-md bg-blue-200 p-1">HCS Web</a> */}
                 {/* <a href="#" className="rounded-md bg-blue-200 p-1">HCS Web</a> */}
