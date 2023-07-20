@@ -26,8 +26,8 @@ export default function HomeLayout() {
   return (
     <>
       <TopNavBar />
-      <div className="absolute top-12">
-        <div className="space-y-6 flex flex-col items-center justify-start w-screen h-screen bg-white dark:bg-slate-400 pt-8">
+      <div className="absolute top-16">
+        <div className="space-y-6 flex flex-col items-center justify-start w-screen h-full bg-white dark:bg-slate-400 pt-8">
           <Outlet />
         </div>
       </div>
