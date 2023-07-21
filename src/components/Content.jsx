@@ -66,7 +66,7 @@ export default function Content() {
             const h1_new = cleanContent.split(h1).join(h1_styled)
 
             const h2 = '<h2 class="wp-block-heading">';
-            const h2_styled = '<h2 class="wp-block-heading text-red-800 dark:text-yellow-200 text-3xl font-bold mb-8 mt-8">';
+            const h2_styled = '<h2 class="wp-block-heading text-red-800 dark:text-blue-200 text-3xl font-bold mb-8 mt-8">';
             const h2_new = h1_new.split(h2).join(h2_styled)
 
             const li = '<li>';
@@ -96,7 +96,7 @@ export default function Content() {
 
     return (
       <div className="w-full p-2 md:col-start-2 md:col-end-6 space-y-8">
-          <Link to={`${location.pathname}${location.search}`} rel='noopener noreferrer' className="text-xl font-bold text-blue-800 dark:text-yellow-200 mb-8">Share this page (Right click and copy link)</Link>
+          <Link to={`${location.pathname}${location.search}`} rel='noopener noreferrer' className="text-xl font-bold text-blue-800 dark:text-red-500 mb-8">Share this page (Right click and copy link)</Link>
           <h1 dangerouslySetInnerHTML={{__html: pageContent.title}} />
           <div dangerouslySetInnerHTML={{__html: pageContent.content}} />
       </div>

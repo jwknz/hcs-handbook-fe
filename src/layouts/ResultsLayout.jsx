@@ -27,7 +27,7 @@ export default function HomeLayout() {
     <>
       <TopNavBar />
       <div className="absolute top-16">
-        <div className="space-y-6 flex flex-col items-center justify-start w-screen h-full bg-white dark:bg-blue-900 pt-8 px-4">
+        <div className="space-y-6 flex flex-col items-center justify-start w-screen h-full bg-white dark:bg-blue-950 pt-8 px-4">
           <Outlet />
         </div>
       </div>
