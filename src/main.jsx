@@ -15,6 +15,8 @@ import Error from './pages/Error';
 import Content from './pages/ContentPage'
 import Results from './components/Results';
 import ResultsLayout from './layouts/ResultsLayout'
+import GeneralContents from './pages/GeneralContents';
+import ContentsLayout from './layouts/ContentsLayout'
 
 
 //Router
@@ -28,13 +30,16 @@ const router = createBrowserRouter(
         <Route path="/search/*" element={<Search />} />
         <Route path="/staff/" element={<Staff />} />
         <Route path="/staff/*" element={<Staff />} />
+        <Route path="/general-contents" element={<GeneralContents />} />
         <Route path="*" element={<Error />} />
 
       </Route>
+
       <Route element={<ResultsLayout />}>
-
             <Route path="/content" element={<Content />} />
-
+      </Route>
+      <Route element={<ContentsLayout />}>
+            <Route path="/gi" element={<GeneralContents />} />
       </Route>
       </>
   )

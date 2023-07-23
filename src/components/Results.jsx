@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { gql, useQuery } from "urql"
+import sanitizeHtml from 'sanitize-html';
 
 import { useSearchQuery } from "../states/useSearchQuery"
 
@@ -42,23 +43,25 @@ export default function Results() {
     }, [data])
 
     const searchResults = (string, keyword, num) => {
-        var regex = /(<([^>]+)>)/ig
         
-        const lower_string = string.toLowerCase().replace(regex, "")
-        const lower_keyword = keyword.toLowerCase().replace(regex, "")
+        let cleanContent = sanitizeHtml(string, {
+          allowedTags: ['p'],
+          allowedAttributes: {
+            p: ['class'],
+          }
+        });
 
-        const clean_string = lower_string.replace("&nbsp;", "")
-        const clean_keywords = lower_keyword.replace("&nbsp;", "")
+        const i = cleanContent.indexOf(keyword)
 
-        const allParts = clean_string.split(lower_keyword)
+        // const start = cleanContent.from(i, -100)
+        // const end = cleanContent.from(i, 100)
 
-        if (num < allParts.length - 1 ) {
-      
-          const start = allParts[num].slice(-100)
-          const end = allParts[num + 1].slice(0, 100)
-      
-          return [start, clean_keywords, end]
-        } 
+        const start = ""
+        const end = ""
+    
+        return [start, keyword, end]
+
+        // return cleanContent
     }
     
     if ( fetching ) return <div>Loading...</div>
@@ -72,7 +75,7 @@ export default function Results() {
             const item = e.node
             const description = searchResults(item.content, myQuery, i)
 
-            console.log(description)
+            //console.log(description)
 
             return (
                 description !== undefined ? (
@@ -80,9 +83,10 @@ export default function Results() {
                         <a href={`/content?id=${item.id}`} className="text-blue-400 dark:text-white hover:text-yellow-500 text-lg font-bold">
                         <h2 style={{paddingBottom: "10px"}}>{item.title}</h2>
                         </a>
-                        <span className="text-black dark:text-white">{description[0]}</span>
-                        <span className="text-black dark:text-white bg-yellow-400 dark:bg-orange-500 p-0.5">{description[1]}</span>
-                        <span className="text-black dark:text-white">{description[2]}</span>
+                        {/* <span className="text-black dark:text-white" dangerouslySetInnerHTML={{__html: description}} /> */}
+                        {/* <span className="text-black dark:text-white" dangerouslySetInnerHTML={{__html: description[0]}} />
+                        <span className="text-black dark:text-white bg-yellow-400 dark:bg-orange-500 p-0.5" dangerouslySetInnerHTML={{__html: description[1]}} />
+                        <span className="text-black dark:text-white" dangerouslySetInnerHTML={{__html: description[2]}} /> */}
                     </li>
                 ) : ( 
                     <div key={item.id}></div>

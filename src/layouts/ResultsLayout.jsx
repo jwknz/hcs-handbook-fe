@@ -3,8 +3,9 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { Outlet } from "react-router-dom";
 import TopNavBar from "../components/TopNavBar";
+import Contents from "../components/Contents";
 
-export default function HomeLayout() {
+export default function ResultsLayout() {
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -26,9 +27,12 @@ export default function HomeLayout() {
   return (
     <>
       <TopNavBar />
-      <div className="absolute top-16">
-        <div className="space-y-6 flex flex-col items-center justify-start w-screen h-full bg-white dark:bg-blue-950 pt-8 px-4">
-          <Outlet />
+      <div className="absolute top-16 w-full">
+        <div className="flex flex-col md:flex-row bg-slate-200 dark:bg-blue-950 dark:text-white">        
+          <Contents />
+          <div className="space-y-6 flex flex-col items-center justify-start w-screen min-h-screen max-h-full bg-white dark:bg-blue-900 pt-8 px-0 md:px-4">
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

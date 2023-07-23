@@ -66,7 +66,7 @@ export default function SearchBar() {
   return (
     <>
     {route === "/" ? (
-      <Form className="flex flex-col items-center rounded-lg px-1 w-full sm:w-7/12">
+      <Form className="flex flex-col items-center rounded-lg px-1 w-full sm:w-full">
         <input tabIndex={0} onKeyDown={handleSubmit} className="my-2 p-2 border-rose-500 border-2 rounded-lg w-full" placeholder="search..." value={query} onChange={(e) => setQuery(e.target.value)} />
         <div className="flex justify-between space-x-4">
           <NavLink to="Search" className="text-center border-2 bg-sky-300 border-sky-900 dark:bg-blue-500 dark:text-white dark:border-rose-500 rounded-lg p-2 my-2" onClick={handleClickSubmit} type="button">Search Whānau Handbook</NavLink>
@@ -77,7 +77,7 @@ export default function SearchBar() {
       <Form className="flex flex-row items-center rounded-lg px-1 w-full space-x-4">
         <input tabIndex={0} onKeyDown={handleSubmit} className="my-2 p-2 border-rose-500 border-2 rounded-lg w-full" placeholder="search..." value={query} onChange={(e) => setQuery(e.target.value)} />
         <div className="flex justify-between space-x-4">
-          <button className="border-2 bg-slate-300 border-blue-900 rounded-lg py-2 px-3 h-11 my-2 text-sm" onClick={handleClickSubmit} type="button">Search</button>
+          <button className="border-2 bg-slate-300 dark:bg-slate-700 border-blue-900 rounded-lg py-2 px-3 h-11 my-2 text-sm" onClick={handleClickSubmit} type="button">Search</button>
         </div>
       </Form>
     )}
