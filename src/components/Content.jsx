@@ -111,21 +111,22 @@ export default function Content() {
             const p_styled = '<p class="text-black dark:text-slate-200 text-lg mb-6">';
             const p_new = a_new.split(p).join(p_styled)
 
-            const words = p_new.split(" ")
-            let words_new = ""
+            // const words = p_new.split(`"`)
+            // let words_new = []
 
-            for(let w of words) {
+            // for(let w of words) {
 
-              if (w.toLowerCase().includes(myQuery.toLowerCase())) {
-              
-              // if (w.toLowerCase() === myQuery.toLowerCase()) {
-                words_new += `<mark class="text-yellow-800 p-1">${w}</mark>`
-              } else {
-                words_new += `${w} ` 
-              }
-            }
+            //   if (w.toLowerCase().includes(myQuery.toLowerCase()) && myQuery !== "") {              
+            //     words_new.push(`<span>${w}</span> `) 
+            //   } else {
+            //     words_new.push(`${w} `) 
+            //   }
 
-            setPageContent({title: title, content: words_new})
+            // }
+
+            // console.log(words_new.join(""))
+
+            setPageContent({title: title, content: p_new})
           }
     
         }
