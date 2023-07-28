@@ -62,7 +62,9 @@ export default function Content() {
                 ul: ['class'],
                 li: ['class'],
                 div: ['class'],
-                iframe: ['class', 'width', 'height', 'src', 'frameborder']
+                iframe: ['class', 'width', 'height', 'src', 'frameborder'],
+                img: ['src', 'class', 'width', 'alt'],
+                tr: ['colspan', 'rowspan']
               }
             });
 
