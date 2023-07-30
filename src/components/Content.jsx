@@ -6,12 +6,18 @@ import sanitizeHtml from 'sanitize-html';
 import { useSearchQuery } from "../states/useSearchQuery"
 
 const PQuery = gql`
-  query ($pid: ID!) {
-    page(id: $pid) {
-      title
-      content
+query PAGES_SELECTED($name: String) {
+  pages(where: {name: $name}) {
+    edges {
+      node {
+        id
+        title
+        content
+        uri
+      }
     }
   }
+}
 `
 
 export default function Content() {
@@ -24,25 +30,29 @@ export default function Content() {
 
     const [ result ] = useQuery({ 
         query: PQuery,
-        variables: {pid},
+        variables: {name: pid},
     })
 
     const location = useLocation()
 
     useEffect(() => {
 
-        setPid(searchParams.get('id'))
-    
+        const cleanPath = location.pathname.replace(/[^a-zA-Z0-9- ]/g, '')
+
+        setPid(cleanPath)
+
         const loadData = () => {
-    
+
           const { data, fetching, error } = result
-    
+
           if ( fetching ) console.log("STILL LOADING.....")
           if ( error ) console.log("SOMETHING WENT WRONG.....")
-    
+
           if (data !== undefined) {
 
-            const cleanTitle = sanitizeHtml(data.page.title, {
+            console.log(data)
+
+            const cleanTitle = sanitizeHtml(data.pages.edges[0].node.title, {
               allowedTags: ['b', 'i', 'em', 'strong', 'a', 'p', 'h1', 'h2', 'header'],
               allowedAttributes: {
                 a: ['href', 'target', 'rel', 'class'],
@@ -50,8 +60,8 @@ export default function Content() {
                 h2: ['class']
               }
             });
-      
-            let cleanContent = sanitizeHtml(data.page.content, {
+
+            let cleanContent = sanitizeHtml(data.pages.edges[0].node.content, {
               allowedTags: ['b', 'i', 'em', 'strong', 'a', 'p', 'img', 'br', 'h1', 'h2', 'ul', 'li', 'table', 'tr', 'td', 'th', 'thead', 'tbody', 'iframe', 'div'],
               allowedAttributes: {
                 a: ['href', 'target', 'rel', 'class'],
@@ -134,7 +144,7 @@ export default function Content() {
         }
     
         loadData()
-    
+        
       }, [result])
 
     return (

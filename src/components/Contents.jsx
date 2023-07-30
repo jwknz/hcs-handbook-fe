@@ -39,7 +39,7 @@ export default function Contents() {
     return (
     <div className="w-full md:w-1/4 px-2 ">
         <h2 className="text-xl font-bold mb-4 mt-4" onClick={() => setShowMobileMenu(!showMobileMenu)}>Menu</h2>
-        {window.innerWidth < 640 ? 
+        {window.innerWidth < 768 ? 
         showMobileMenu ? (
         <ul className="w-full md:col-start-2 md:col-end-6 h-auto">
             <li className="bg-blue-200 dark:bg-blue-700 mb-2 p-2 hover:bg-blue-400 hover:cursor-pointer rounded-md">
@@ -52,7 +52,7 @@ export default function Contents() {
             }).map(page => {
                 return (
                     <li className="bg-blue-200 dark:bg-blue-700 mb-2 p-2 hover:bg-blue-400 hover:cursor-pointer rounded-md">
-                        <a href={`/content?id=${page.node.id}`} >{page.node.title}</a>
+                        <a href={`${page.node.uri}`} >{page.node.title}</a>
                     </li>
                 )
             })}
@@ -70,7 +70,7 @@ export default function Contents() {
             }).map(page => {
                 return (
                     <li key={page.node.id} className="w-full bg-blue-200 dark:bg-blue-900 mb-2 p-2 hover:bg-blue-400 hover:cursor-pointer rounded-md">
-                        <a href={`/content?id=${page.node.id}`} >{page.node.title}</a>
+                        <a href={`${page.node.uri}`} >{page.node.title}</a>
                     </li>
                 )
             })}

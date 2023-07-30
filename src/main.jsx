@@ -27,16 +27,16 @@ const router = createBrowserRouter(
 
         <Route index element={<Home />} />
         <Route path="/search/" element={<Search />} />
-        <Route path="/search/*" element={<Search />} />
+        {/* <Route path="/search/*" element={<Search />} />
         <Route path="/staff/" element={<Staff />} />
         <Route path="/staff/*" element={<Staff />} />
         <Route path="/general-contents" element={<GeneralContents />} />
-        <Route path="*" element={<Error />} />
+        <Route path="*" element={<Error />} /> */}
 
       </Route>
 
       <Route element={<ResultsLayout />}>
-            <Route path="/content" element={<Content />} />
+            <Route path="*" element={<Content />} />
       </Route>
       <Route element={<ContentsLayout />}>
             <Route path="/gi" element={<GeneralContents />} />

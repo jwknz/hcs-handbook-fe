@@ -1,14 +1,14 @@
-import create from 'zustand'
+import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-let searchStore = set => ({
-
-    query: "",
-    savedQuery: (query) => set({ query }),
-    clearQuery: () => set({ query: "" })
-
-})
-
-searchStore = persist(searchStore, {name: 'query'})
-
-export const useSearchQuery = create(searchStore)
+export const useSearchQuery = create(
+    persist(
+        (set) => ({
+            query: "",
+            savedQuery: (input) => set({ query: input })
+        }),
+        {
+            name: 'query',
+        }
+    )
+)

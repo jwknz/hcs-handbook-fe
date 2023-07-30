@@ -27,3 +27,4 @@ tmp
 docker-compose.yml
 db
 .env
+temp/

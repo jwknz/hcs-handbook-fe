@@ -1,14 +1,12 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, cloneElement } from "react"
 import { NavLink, Form, useNavigate, useSearchParams } from "react-router-dom"
 
 import { useSearchQuery } from "../states/useSearchQuery"
 
 export default function SearchBar() {
 
-  const [count, setCount] = useState(0)
   const [query, setQuery] = useState("")
   const [route, setRoute] = useState()
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const myQuery = useSearchQuery((state) => state.query)
   const addQuery = useSearchQuery((state) => state.savedQuery)
@@ -33,15 +31,20 @@ export default function SearchBar() {
 
       addQuery(query)
 
-      if (myQuery === "") {
-        navigate({
-          pathname: "/"
-        })
-      } else {
-        navigate({
-          pathname: "/search"
-        })
-      }
+      // if (myQuery === "") {
+      //   navigate({
+      //     pathname: "/"
+      //   })
+      // } else {
+      //   navigate({
+      //     pathname: "/search"
+      //   })
+      // }
+
+      navigate({
+        pathname: "/search",
+        search: "public"
+      })
 
     }
 
@@ -51,15 +54,20 @@ export default function SearchBar() {
 
     addQuery(query)
 
-    if (myQuery === "") {
-      navigate({
-        pathname: "/"
-      })
-    } else {
-      navigate({
-        pathname: "/search"
-      })
-    }
+    // if (myQuery === "") {
+    //   navigate({
+    //     pathname: "/"
+    //   })
+    // } else {
+    //   navigate({
+    //     pathname: "/search"
+    //   })
+    // }
+
+    navigate({
+      pathname: "/search",
+      search: "q=public"
+    })
 
   }
 
@@ -69,8 +77,9 @@ export default function SearchBar() {
       <Form className="flex flex-col items-center rounded-lg px-1 w-full sm:w-full">
         <input tabIndex={0} onKeyDown={handleSubmit} className="my-2 p-2 border-rose-500 border-2 rounded-lg w-full" placeholder="search..." value={query} onChange={(e) => setQuery(e.target.value)} />
         <div className="flex justify-between space-x-4">
-          <NavLink to="Search" className="text-center border-2 bg-sky-300 border-sky-900 dark:bg-blue-500 dark:text-white dark:border-rose-500 rounded-lg p-2 my-2" onClick={handleClickSubmit} type="button">Search Whānau Handbook</NavLink>
-          <NavLink to="Staff"  className="text-center border-2 bg-sky-300 border-sky-900 dark:bg-blue-500 dark:text-white dark:border-rose-500 rounded-lg p-2 my-2" onClick={handleClickSubmit} type="button">Search Staff Handbook</NavLink>
+          <NavLink to="/Search?q=public" className="text-center border-2 bg-sky-300 border-sky-900 dark:bg-blue-500 dark:text-white dark:border-rose-500 rounded-lg p-2 my-2" onClick={handleClickSubmit} type="button">Search Whānau Handbook</NavLink>
+          {/* <NavLink to="/Search?q=staff" className="text-center border-2 bg-sky-300 border-sky-900 dark:bg-blue-500 dark:text-white dark:border-rose-500 rounded-lg p-2 my-2" onClick={handleClickSubmit} type="button">Search Staff Handbook</NavLink> */}
+          {/* <NavLink to="/Search?q=student" className="text-center border-2 bg-sky-300 border-sky-900 dark:bg-blue-500 dark:text-white dark:border-rose-500 rounded-lg p-2 my-2" onClick={handleClickSubmit} type="button">Search Student Handbook</NavLink> */}
         </div>
       </Form>
     ) : (
