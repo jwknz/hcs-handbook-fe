@@ -78,7 +78,7 @@ export default function SearchBar() {
         <input tabIndex={0} onKeyDown={handleSubmit} className="my-2 p-2 border-rose-500 border-2 rounded-lg w-full" placeholder="search..." value={query} onChange={(e) => setQuery(e.target.value)} />
         <div className="flex justify-between space-x-4">
           <NavLink to="/Search?q=public" className="text-center border-2 bg-sky-300 border-sky-900 dark:bg-blue-500 dark:text-white dark:border-rose-500 rounded-lg p-2 my-2" onClick={handleClickSubmit} type="button">Search Whānau Handbook</NavLink>
-          {/* <NavLink to="/Search?q=staff" className="text-center border-2 bg-sky-300 border-sky-900 dark:bg-blue-500 dark:text-white dark:border-rose-500 rounded-lg p-2 my-2" onClick={handleClickSubmit} type="button">Search Staff Handbook</NavLink> */}
+          <NavLink to="/Search?q=staff" className="text-center border-2 bg-sky-300 border-sky-900 dark:bg-blue-500 dark:text-white dark:border-rose-500 rounded-lg p-2 my-2" onClick={handleClickSubmit} type="button">Search Staff Handbook</NavLink>
           {/* <NavLink to="/Search?q=student" className="text-center border-2 bg-sky-300 border-sky-900 dark:bg-blue-500 dark:text-white dark:border-rose-500 rounded-lg p-2 my-2" onClick={handleClickSubmit} type="button">Search Student Handbook</NavLink> */}
         </div>
       </Form>

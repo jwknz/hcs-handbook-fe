@@ -1,5 +1,6 @@
+
 import { gql, useQuery } from "urql"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Query = gql`
 query {
@@ -17,6 +18,13 @@ query {
                         id
                     }
                 }
+                tags {
+                edges {
+                  node {
+                        name
+                        }
+                    }
+                }
             }
         }
     }
@@ -26,10 +34,17 @@ query {
 export default function Contents() {
 
     const [showMobileMenu, setShowMobileMenu] = useState(false)
+    const [tag, setTag] = useState("");
 
     const [ result ] = useQuery({ 
         query: Query
     })
+
+    useEffect(() => {
+
+        setTag(location.search.split("=")[1])
+        
+    }, [tag])
 
     const { data, fetching, error } = result
 
@@ -42,20 +57,30 @@ export default function Contents() {
         {window.innerWidth < 768 ? 
         showMobileMenu ? (
         <ul className="w-full md:col-start-2 md:col-end-6 h-auto">
+
             <li className="bg-blue-200 dark:bg-blue-700 mb-2 p-2 hover:bg-blue-400 hover:cursor-pointer rounded-md">
                 <a href={`/`} >Home</a>
             </li>
+
             {data.pages.edges.filter(page => {
                 return (
-                    page.node.parent === null
+
+                    page.node.parent === null && page.node.tags.edges[0].node.name === "public"
+
                 )
             }).map(page => {
+
+                console.log(tag)
+
                 return (
-                    <li className="bg-blue-200 dark:bg-blue-700 mb-2 p-2 hover:bg-blue-400 hover:cursor-pointer rounded-md">
+
+                    <li key={page.node.id} className="w-full bg-blue-200 dark:bg-blue-900 mb-2 p-2 hover:bg-blue-400 hover:cursor-pointer rounded-md">
                         <a href={`${page.node.uri}`} >{page.node.title}</a>
                     </li>
+
                 )
             })}
+
         </ul>
         ) : null
         :
@@ -65,13 +90,20 @@ export default function Contents() {
             </li>
             {data.pages.edges.filter(page => {
                 return (
-                    page.node.parent === null
+
+                    page.node.parent === null && page.node.tags.edges[0].node.name === "public"
+                    
                 )
             }).map(page => {
+
+                console.log(tag)
+
                 return (
+
                     <li key={page.node.id} className="w-full bg-blue-200 dark:bg-blue-900 mb-2 p-2 hover:bg-blue-400 hover:cursor-pointer rounded-md">
                         <a href={`${page.node.uri}`} >{page.node.title}</a>
                     </li>
+
                 )
             })}
         </ul>

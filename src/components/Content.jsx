@@ -1,4 +1,4 @@
-import { createElement, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useSearchParams, useLocation, Link } from "react-router-dom"
 import { gql, useQuery } from "urql"
 import sanitizeHtml from 'sanitize-html';
