@@ -4,6 +4,8 @@ import { CiLight } from "react-icons/ci"
 import { BiMoon } from "react-icons/bi"
 import { WiMoonAltThirdQuarter } from "react-icons/wi"
 
+import { GoogleLogin } from '@react-oauth/google';
+
 export default function TopNavBar() {
 
     const [isOpen, setIsOpen] = useState(false)
@@ -59,7 +61,15 @@ export default function TopNavBar() {
                 {/* <a href="#" className="rounded-md bg-blue-200 p-1">HCS Web</a> */}
             </div>
             <div className="space-x-2 justify-end flex -mt-8">
-                {/* <a href="#" className="rounded-md bg-slate-100 dark:bg-slate-700 text-black dark:text-white p-2">Staff Login</a> */}
+                <GoogleLogin
+                    onSuccess={credentialResponse => {
+                        console.log(credentialResponse);
+                    }}
+                    onError={() => {
+                        console.log('Login Failed');
+                    }}
+                    auto_select={true}
+                />
                 <button onClick={() => setIsOpen(prev => !prev)} className="rounded-md bg-slate-100 dark:bg-slate-700 hover:bg-slate-400 dark:text-white p-2 w-16 flex justify-center">{themeLabel}</button>
             </div>
         </div>
